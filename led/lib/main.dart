@@ -70,8 +70,25 @@ class _LedControllerScreenState extends State<LedControllerScreen> {
             'yellow': data['leds']?['yellow'] ?? false,
             'green': data['leds']?['green'] ?? false,
           };
-          alarmOn = data['alarm'] ?? false; // Default to 'false' if null
+          alarmOn = data['alarmOn'] ?? false; // Default to 'false' if null
         });
+        if (alarmOn) {
+          // Si l'alarme est ON, jouer le son (s'il n'est pas déjà en train de jouer)
+          if (!assetsAudioPlayer.isPlaying.value) {
+            print("fetchStatus: Alarm is ON. Playing sound.");
+            assetsAudioPlayer
+                .open(
+                  Audio(
+                      "assets/audio.wav"), // Assurez-vous que le chemin est correct
+                  autoStart: true,
+
+                  showNotification: false, // Cacher la notification par défaut
+                )
+                .catchError((e) => print("Error playing sound: $e"));
+          } else {
+            print("fetchStatus: Alarm is ON, but sound already playing.");
+          }
+        }
       }
     } catch (e) {
       print('Erreur de fetchStatus: $e');
@@ -102,16 +119,13 @@ class _LedControllerScreenState extends State<LedControllerScreen> {
       );
       if (res.statusCode == 200) {
         await fetchStatus();
-        setState(() {
-          alarmOn = !alarmOn;
-        });
         assetsAudioPlayer.open(
           Audio("assets/audio.wav"),
           autoStart: true,
           showNotification: true,
         );
-        print(">>> On arrête le son");
-        assetsAudioPlayer.stop();
+        //print(">>> On arrête le son");
+        //assetsAudioPlayer.stop();
       }
     } catch (e) {
       print('Erreur toggleAlarm: $e');
