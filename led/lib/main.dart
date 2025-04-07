@@ -39,7 +39,8 @@ class _LedControllerScreenState extends State<LedControllerScreen> {
   bool alarmOn = false;
   final assetsAudioPlayer = AssetsAudioPlayer(); // Audio player instance
 
-  final String apiUrl = 'http://localhost:4000'; // Update API URL as needed
+  final String apiUrl =
+      'https://backend-led.onrender.com'; // Update API URL as needed
   Timer? pollingTimer;
 
   @override
