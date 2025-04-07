@@ -119,11 +119,13 @@ class _LedControllerScreenState extends State<LedControllerScreen> {
       );
       if (res.statusCode == 200) {
         await fetchStatus();
-        assetsAudioPlayer.open(
-          Audio("assets/audio.wav"),
-          autoStart: true,
-          showNotification: true,
-        );
+        if (alarmOn) {
+          assetsAudioPlayer.open(
+            Audio("assets/audio.wav"),
+            autoStart: true,
+            showNotification: true,
+          );
+        }
         //print(">>> On arrête le son");
         //assetsAudioPlayer.stop();
       }
