@@ -254,20 +254,20 @@ class _LedControllerScreenState extends State<LedControllerScreen> {
   Widget build(BuildContext context) {
     // Définir les couleurs des LEDs ici pour correspondre au thème
     final Map<String, Color> ledDisplayColors = {
-      'red': const Color(0xC70039), // Utiliser la couleur primaire rose
+      'red': const Color(0x00c70039), // Utiliser la couleur primaire rose
       'yellow': const Color(
-          0xe9ec1d), // Utiliser l'accent mauve (ou une autre couleur comme Colors.orangeAccent)
+          0x00e9ec1d), // Utiliser l'accent mauve (ou une autre couleur comme Colors.orangeAccent)
       'green': const Color(
-          0x4fff33), // Utiliser l'accent rose (ou Colors.cyanAccent pour varier)
+          0x004fff33), // Utiliser l'accent rose (ou Colors.cyanAccent pour varier)
     };
 
     // Définir les gradients pour le bouton d'alarme
-    final Gradient alarmOffGradient = const LinearGradient(
+    const Gradient alarmOffGradient = LinearGradient(
       colors: [primaryPurple, accentPurple], // Mauve -> Mauve clair
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     );
-    final Gradient alarmOnGradient = const LinearGradient(
+    const Gradient alarmOnGradient = LinearGradient(
       colors: [primaryPink, accentPink], // Rose -> Rose clair/vif
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
